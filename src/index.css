@@ -1,0 +1,194 @@
+/* ===== Fintech Theme With Proper Dark/Light Mode ===== */
+
+* {
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+/* ================= LIGHT MODE ================= */
+
+.light {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  color: #0f172a;
+  min-height: 100vh;
+}
+
+.light .card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.light input,
+.light select {
+  background: #f1f5f9;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+
+.light .expense-item {
+  background: #f8fafc;
+}
+
+.light button {
+  background: #6366f1;
+}
+
+.light button:hover {
+  background: #4f46e5;
+}
+
+/* ================= DARK MODE ================= */
+
+.dark {
+  background: linear-gradient(135deg, #0b1120, #111827, #1e1b4b);
+  color: #f8fafc;
+  min-height: 100vh;
+}
+
+.dark .card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px rgba(124, 58, 237, 0.25);
+}
+
+.dark input,
+.dark select {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.dark select option {
+  background: #111827;
+  color: white;
+}
+
+.dark .expense-item {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.dark button {
+  background: #7c3aed;
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+}
+
+.dark button:hover {
+  background: #a78bfa;
+}
+
+/* ================= COMMON STYLES ================= */
+
+.container {
+  width: 95%;
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.card {
+  border-radius: 18px;
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+/* ===== Premium Centered Animated Title ===== */
+
+.main-title {
+  text-align: center;
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+/* Light Mode Title */
+.light .main-title {
+  color: #1e293b;
+}
+
+/* Dark Mode Animated Gradient */
+.dark .main-title {
+  background: linear-gradient(
+    90deg,
+    #a78bfa,
+    #7c3aed,
+    #6366f1,
+    #a78bfa
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  color: transparent;
+  animation: glowShift 4s linear infinite;
+}
+
+/* Underline Accent */
+.main-title::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 3px;
+  margin: 12px auto 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #7c3aed, #6366f1);
+  opacity: 0.7;
+}
+
+/* Gradient Animation */
+@keyframes glowShift {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Summary */
+.summary {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border-radius: 16px;
+  margin-bottom: 12px;
+}
+
+button {
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .container {
+    margin: 20px auto;
+  }
+
+  .main-title {
+    font-size: 28px;
+  }
+
+  input,
+  select,
+  button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .summary {
+    flex-direction: column;
+  }
+}
