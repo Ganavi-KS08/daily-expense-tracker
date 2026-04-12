@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
 import "./Auth.css";
 
@@ -6,31 +6,41 @@ export default function ResetPassword() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
- const handleUpdatePassword = async () => {
-  if (!password) {
-    alert("Enter new password");
-    return;
-  }
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      console.log("Reset Session:", data.session);
+    };
 
-  setLoading(true);
+    checkSession();
+  }, []);
 
-  const { error } = await supabase.auth.updateUser({
-    password,
-  });
+  const handleUpdatePassword = async () => {
+    if (!password) {
+      alert("Enter new password");
+      return;
+    }
 
-  setLoading(false);
+    setLoading(true);
 
-  if (error) {
-    alert(error.message);
-  } else {
-    alert("Password updated successfully 🎉");
+    const { error } = await supabase.auth.updateUser({
+      password,
+    });
 
-    await supabase.auth.signOut();
+    setLoading(false);
 
-    window.location.hash = "";
-    window.location.reload();
-  }
-};
+    if (error) {
+      alert(error.message);
+    } else {
+      alert("Password updated successfully 🎉");
+
+      await supabase.auth.signOut();
+
+      window.location.hash = "";
+      window.location.reload();
+    }
+  };
+
   return (
     <div className="auth-container">
       <div className="auth-card">
