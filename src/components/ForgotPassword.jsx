@@ -15,8 +15,7 @@ export default function ForgotPassword({ setAuthView }) {
     setLoading(true);
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: "https://daily-expense-tracker-kappa.vercel.app/reset-password",
-    });
+redirectTo: "https://daily-expense-tracker-ganavi.vercel.app"    });
 
     setLoading(false);
 
