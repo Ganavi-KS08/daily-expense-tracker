@@ -2,7 +2,7 @@ import { useState } from "react";
 import { supabase } from "../supabaseClient";
 import "./Auth.css";
 
-export default function Auth() {
+export default function Auth({ setAuthView }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -22,8 +22,11 @@ export default function Auth() {
 
     setLoading(false);
 
-    if (error) alert(error.message);
-    else alert("Signup Successful 🎉");
+    if (error) {
+      alert(error.message);
+    } else {
+      alert("Signup Successful 🎉");
+    }
   };
 
   const handleLogin = async () => {
@@ -41,8 +44,11 @@ export default function Auth() {
 
     setLoading(false);
 
-    if (error) alert(error.message);
-    else alert("Login Successful 🚀");
+    if (error) {
+      alert(error.message);
+    } else {
+      alert("Login Successful 🚀");
+    }
   };
 
   return (
@@ -63,6 +69,13 @@ export default function Auth() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+
+        <p
+          className="forgot-password"
+          onClick={() => setAuthView("forgot")}
+        >
+          Forgot Password?
+        </p>
 
         <div className="button-group">
           <button onClick={handleLogin} disabled={loading}>
