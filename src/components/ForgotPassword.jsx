@@ -14,12 +14,17 @@ export default function ForgotPassword({ setAuthView }) {
 
     setLoading(true);
 
-    const { error } = await supabase.auth.resetPasswordForEmail(email);
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: "https://daily-expense-tracker-kappa.vercel.app/reset-password",
+    });
 
     setLoading(false);
 
-    if (error) alert(error.message);
-    else alert("Reset email sent 📩");
+    if (error) {
+      alert(error.message);
+    } else {
+      alert("Reset email sent 📩");
+    }
   };
 
   return (
